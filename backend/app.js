@@ -1,15 +1,16 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
-const connectDB = require("./config/db");
-const complaintRoutes = require("./routes/complaintRoutes");
 
 // Routes
 const authRoutes = require("./routes/authRoutes");
-app.use("/api/complaints", complaintRoutes);
+const complaintRoutes = require("./routes/complaintRoutes");
 
 // Error Handler
 const errorHandler = require("./middleware/errorHandler");
+
+// Database
+const connectDB = require("./config/db");
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.get("/", (req, res) => {
 // ====================
 
 app.use("/api/auth", authRoutes);
+app.use("/api/complaints", complaintRoutes);
 
 // ====================
 // 404 Handler
@@ -57,8 +59,9 @@ app.use((req, res) => {
 app.use(errorHandler);
 
 // ====================
-// Start Server
+// Database + Server
 // ====================
+
 connectDB();
 
 app.listen(PORT, () => {
