@@ -2,9 +2,11 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const connectDB = require("./config/db");
+const complaintRoutes = require("./routes/complaintRoutes");
 
 // Routes
 const authRoutes = require("./routes/authRoutes");
+app.use("/api/complaints", complaintRoutes);
 
 // Error Handler
 const errorHandler = require("./middleware/errorHandler");
