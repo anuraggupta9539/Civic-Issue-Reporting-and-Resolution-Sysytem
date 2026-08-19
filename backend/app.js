@@ -6,7 +6,7 @@ require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
 const complaintRoutes = require("./routes/complaintRoutes");
 
-// Error Handler
+// Middleware
 const errorHandler = require("./middleware/errorHandler");
 
 // Database
@@ -59,10 +59,15 @@ app.use((req, res) => {
 app.use(errorHandler);
 
 // ====================
-// Database + Server
+// Database Connection
 // ====================
 
-connectDB();
+// MongoDB URI available hone ke baad enable karna
+// connectDB();
+
+// ====================
+// Start Server
+// ====================
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
